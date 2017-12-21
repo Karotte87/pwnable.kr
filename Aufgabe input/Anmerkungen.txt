@@ -1,0 +1,40 @@
+'A' = 65 ist zwar richtig, aber das ist der Index, verweist also auf das 66. Element in der Reihe.
+
+char* argv[] ist etwas knifflig. Zeiger verwendet man normalerweise, um Arrays anzulegen. Strings sind in C char-Arrays.
+Der Ausdruck bezeichnet deswegen ein doppeltes char-Array oder ein String-Array.
+Um dich mit den ganzen Datenstrukturen vertraut zu machen, solltest du wissen was Listen, Sets,
+Bäume, Maps und Arrays sind, wie sie aussehen und wie sie verwendet werden.
+
+Man kann stdout auf stderr umleiten indem man 1>&2 verwendet. echo sollte dir ja ein Begriff sein ;)
+
+Wenn man im Terminal eine Umgebungsvariable setzt, sollte diese auch für alle Kindprozesse des Terminals gelten.
+
+Die vierte Aufgabe sollte keine 5 Minuten dauern und für die fünfte ein paar kurze Erklärungen:
+
+int a;     //ein ganz normales int
+int* ptr;  //ein pointer beinhaltet die Speicheradresse des eigentlichen Wertes/Objekts
+*ptr = &a; //der Pointer wird dereferenziert, das heißt man greift auf das Objekt hinter dem Pointer zu, die Zuweisung
+             ist die Adresse, an der a im Speicher steht
+
+
+typedef int Integer;                 //mit typedef definiert man Ausdrücke. In diesem Fall bedeutet, dass man statt
+float preis = 3.99;                  //int auch Integer schreiben kann.
+Integer zahl;
+zahl = (Integer) preis;
+printf("Integer-Zahl: %d\n", zahl);
+
+
+typedef struct {                 //mit struct definiert man ein neues Objekt. In diesem Fall hat es die zwei Felder
+	char name[50];               //name und alter
+	int alter;
+}person;
+
+struct xyz{
+	char name[50];
+	int alter;
+}
+typedef struct xyz person;
+
+person kurt, dieter, antonia;
+kurt->name = "kurt";
+kurt->alter = 42;
