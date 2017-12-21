@@ -1,0 +1,1 @@
+inputstartscript.sh führt auf Linux die notwendigen Schritte aus, um zu Stufe 2 zu kommen. Einfach starten
