@@ -1,0 +1,29 @@
+// argv
+	if(argc != 100) return 0;		//min. 100 Argumente
+	if(strcmp(argv['A'],"\x00")) return 0;	// Argument 0 (dateiname(prozessname?))) muss A sein
+	if(strcmp(argv['B'],"\x20\x0a\x0d")) return 0;	//B muss an stellen \x20(32), \x0a(10), \x0d(13)
+	printf("Stage 1 clear!\n");	
+
+Test: 	printf("argument [0] ist %s, argument 10 ist %s, argument 13 ist %s, argument 32 ist %s \n",argv[0x00],argv[0x0a],argv[0x0d],argv[0x20]);
+
+	#Ich habe gespickt und festgestellt, dass bei "strcmp" tatsächlich 'A' Als ASCII-Wert (65) und 'B' 		#entsprechend (66) genommen wird. im main aufruf wird argv[] als char* gecastet(?) 
+	#int main(int argc, char* argv[]. Char dient zum Darstellen von AScii zeichen und wird daher in eine 		#Zahl übersetzt -> Ich muss Argument 65 \x00 und Argument 66 \x20\x0a\x0d lauten lassen.
+	#Use the $'' quote style: script $'\x02\xc5\xd8.
+
+>> (exec -a 'A' ./a.out 1 2 3 4 5 6 7 8 9 0 1 2 0 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 0 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 $'\x00' $'\x20\x0a\x0d' 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9)
+
+	#Yay!!
+
+Stage 2:
+
+// stdio
+	char buf[4];			//char array, namens buf, größe 4 einzelne Zeichen
+	read(0, buf, 4);		// liest "4" bytes vom file deskriptor "0" (stdin=Usereingabe) ein und speichert diese in "buf"
+	if(memcmp(buf, "\x00\x0a\x00\xff", 4)) return 0; // vergleiche "buf" mit "\x00\x0a\x00\xff", lese dabei alle 4 bytes
+	read(2, buf, 4); // liest "4" bytes vom file deskriptor "2" (stderr=Standard error(???)) ein und speichert diese in "buf"
+        if(memcmp(buf, "\x00\x0a\x02\xff", 4)) return 0; //vergleiche "buf" mit "\x00\x0a\x00\xff", lese dabei alle 4 bytes
+	printf("Stage 2 clear!\n");
+
+	#hm
+
+
