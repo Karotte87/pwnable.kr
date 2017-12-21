@@ -1,0 +1,6 @@
+//stdio
+
+- objdump von startscript um speicherbeich \x00\x0a\x00\xff zu überprüfen
+- memcmp genau überprüfen: vergleicht er speicherinhalte oder adressen?
+- wie beeinflusse ich stderr?
+- falls speicherinhalte verglichen werden: wie übergebe ich einen Hexwert? schon geprüft: ASCII, Dezimal
